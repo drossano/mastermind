@@ -1,4 +1,6 @@
 class Codebreaker
+  attr_reader :guess
+  
   def initialize
     puts "Enter 4 digits ranging from 1 to 6 to guess the code"
     @guess = gets.chomp.to_s.split("").map{ |digit| digit.to_i}

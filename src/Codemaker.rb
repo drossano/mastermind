@@ -1,6 +1,7 @@
 class Codemaker
+  attr_reader :code
+
   def initialize
     @code = [rand(1..6),rand(1..6), rand(1..6), rand(1..6)]
-    p @code
   end
 end
