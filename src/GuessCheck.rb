@@ -3,12 +3,7 @@ require_relative "Codemaker"
 
 class GuessCheck
   def check_numbers(guess,code)
-    correct_numbers = 4-(guess-code).length
-    if correct_numbers == 0
-      "no"
-    else
-      correct_numbers
-    end
+    p code.filter{ |i| guess.include? i}.length
   end
   
   def check_position(guess,code)
@@ -20,3 +15,5 @@ class GuessCheck
     end
   end
 end
+
+GuessCheck.new.check_numbers([1,2,1,5], [1,1,3,4])
