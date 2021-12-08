@@ -1,5 +1,6 @@
 require_relative "Codebreaker"
 require_relative "Codemaker"
+require_relative "GuessCheck"
 
 class Game
   def initialize
@@ -9,11 +10,9 @@ class Game
 
   def guess
     guess = Codebreaker.new
-    if guess.guess == @code.code
-      p "You got it right!"
-    else
-      p "You're wrong!"
-    end
+    check = GuessCheck.new
+    p "You guessed #{check.check_numbers(guess.guess,@code.code)} numbers correctly and " \
+    "#{check.check_position(guess.guess,@code.code)} are in the correct position."
   end
 end
 
