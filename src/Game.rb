@@ -4,15 +4,17 @@ require_relative "GuessCheck"
 
 class Game
   def initialize
-    @code = Codemaker.new
-    print @code.code
+    @code = Codemaker.new.code
+    print @code
   end
 
   def guess
-    guess = Codebreaker.new
+    guess = Codebreaker.new.guess
     check = GuessCheck.new
-    p "You guessed #{check.check_numbers(guess.guess,@code.code)} numbers correctly and " \
-    "#{check.check_position(guess.guess,@code.code)} are in the correct position."
+    correct_numbers = check.check_numbers(guess,@code)
+    correct_positions = check.check_position(guess,@code)
+    p "You guessed #{correct_numbers} numbers correctly and " \
+    "#{correct_positions} are in the correct position."
   end
 end
 
