@@ -12,6 +12,11 @@ class GuessCheck
   end
   
   def check_position(guess,code)
-    guess.zip(code).count { |guess,code| guess == code }
+    correct_positions = guess.zip(code).count { |guess,code| guess == code }
+    if correct_positions == 0
+      "none"
+    else
+      correct_positions
+    end
   end
 end

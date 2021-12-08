@@ -13,8 +13,15 @@ class Game
     check = GuessCheck.new
     correct_numbers = check.check_numbers(guess,@code)
     correct_positions = check.check_position(guess,@code)
-    p "You guessed #{correct_numbers} numbers correctly and " \
-    "#{correct_positions} are in the correct position."
+
+    if correct_positions == 4
+      puts "You got the code right!"
+    elsif correct_numbers != "no" || correct_positions != "none"
+      puts "You guessed #{correct_numbers} numbers correctly and " \
+      "#{correct_positions} are in the correct position."
+    else
+      puts "You guessed #{correct_numbers} numbers correctly."
+    end
   end
 end
 
