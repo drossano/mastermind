@@ -5,7 +5,6 @@ require_relative "GuessCheck"
 class Game
   def initialize
     @code = Codemaker.new.code
-    print @code
   end
 
   def guess
@@ -17,11 +16,11 @@ class Game
     if correct_positions == 4
       puts "You got the code right!"
       true
-    elsif correct_numbers != "no" || correct_positions != "none"
+    elsif correct_numbers == 0
+      puts "You guessed #{correct_numbers} numbers correctly."
+    else
       puts "You guessed #{correct_numbers} numbers correctly and " \
       "#{correct_positions} #{check.position_plurality(correct_positions)} in the correct position."
-    else
-      puts "You guessed #{correct_numbers} numbers correctly."
     end
   end
 
