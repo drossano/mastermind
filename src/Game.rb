@@ -16,6 +16,7 @@ class Game
 
     if correct_positions == 4
       puts "You got the code right!"
+      true
     elsif correct_numbers != "no" || correct_positions != "none"
       puts "You guessed #{correct_numbers} numbers correctly and " \
       "#{correct_positions} are in the correct position."
@@ -23,7 +24,18 @@ class Game
       puts "You guessed #{correct_numbers} numbers correctly."
     end
   end
+
+  def turns
+    i = 1
+    max_turns = 12
+    until i > max_turns
+      puts "Turn #{i} of 12"
+      break if guess == true
+      
+      i += 1
+    end
+  end
 end
 
 game = Game.new
-game.guess
+game.turns
