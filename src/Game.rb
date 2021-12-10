@@ -19,7 +19,7 @@ class Game
       true
     elsif correct_numbers != "no" || correct_positions != "none"
       puts "You guessed #{correct_numbers} numbers correctly and " \
-      "#{correct_positions} are in the correct position."
+      "#{correct_positions} #{check.position_plurality(correct_positions)} in the correct position."
     else
       puts "You guessed #{correct_numbers} numbers correctly."
     end
@@ -31,7 +31,7 @@ class Game
     until i > max_turns
       puts "Turn #{i} of 12"
       break if guess == true
-      
+
       i += 1
     end
   end
