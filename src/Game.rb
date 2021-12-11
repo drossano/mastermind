@@ -43,6 +43,7 @@ class Game
 
       i += 1
     end
+    puts "You reached the maximum amount of turns. The code is #{@code.join}"
   end
 end
 
