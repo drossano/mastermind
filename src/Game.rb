@@ -14,7 +14,11 @@ class Game
   end
 
   def guess
-    guess = PlayerCodebreaker.new.guess
+    if @game_type == 1
+      guess = ComputerCodebreaker.new.code
+    else
+      guess = PlayerCodebreaker.new.guess
+    end
     check = GuessCheck.new
     correct_numbers = check.check_numbers(guess,@code)
     correct_positions = check.check_position(guess,@code)
