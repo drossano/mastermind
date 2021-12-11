@@ -1,4 +1,4 @@
-class Codebreaker
+class PlayerCodebreaker
   attr_reader :guess
   
   def initialize

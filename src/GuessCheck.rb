@@ -1,5 +1,5 @@
-require_relative "Codebreaker"
-require_relative "Codemaker"
+require_relative "PlayerCodebreaker"
+require_relative "ComputerCodemaker"
 
 class GuessCheck
   def check_numbers(guess,code)

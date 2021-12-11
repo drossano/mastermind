@@ -1,4 +1,4 @@
-class Codemaker
+class ComputerCodemaker
   attr_reader :code
 
   def initialize

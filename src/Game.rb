@@ -1,16 +1,20 @@
-require_relative "Codebreaker"
-require_relative "Codemaker"
+require_relative "PlayerCodebreaker"
+require_relative "ComputerCodemaker"
 require_relative "GuessCheck"
 require_relative "GameType"
 
 class Game
   def initialize
-    game_type = GameType.new.game_type
-    @code = Codemaker.new.code
+    @game_type = GameType.new.game_type
+    if @game_type == 1
+      @code = PlayerCodemaker.new.code
+    else
+      @code = ComputerCodemaker.new.code
+    end
   end
 
   def guess
-    guess = Codebreaker.new.guess
+    guess = PlayerCodebreaker.new.guess
     check = GuessCheck.new
     correct_numbers = check.check_numbers(guess,@code)
     correct_positions = check.check_position(guess,@code)
