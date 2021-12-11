@@ -1,9 +1,11 @@
 require_relative "Codebreaker"
 require_relative "Codemaker"
 require_relative "GuessCheck"
+require_relative "GameType"
 
 class Game
   def initialize
+    game_type = GameType.new.game_type
     @code = Codemaker.new.code
   end
 
