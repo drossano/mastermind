@@ -1,3 +1,5 @@
+require_relative "PlayerCodemaker"
+require_relative "ComputerCodebreaker"
 require_relative "PlayerCodebreaker"
 require_relative "ComputerCodemaker"
 require_relative "GuessCheck"
@@ -8,6 +10,7 @@ class Game
     @game_type = GameType.new.game_type
     if @game_type == 1
       @code = PlayerCodemaker.new.code
+      @computer = ComputerCodebreaker.new
     else
       @code = ComputerCodemaker.new.code
     end
@@ -15,7 +18,8 @@ class Game
 
   def guess
     if @game_type == 1
-      guess = ComputerCodebreaker.new.code
+      guess = @computer.computer_guess
+      p guess
     else
       guess = PlayerCodebreaker.new.guess
     end
