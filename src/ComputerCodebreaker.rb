@@ -1,6 +1,6 @@
 class ComputerCodebreaker
   def initialize
-    @code_list = (1..6).to_a.repeated_permutation(4).to_a
+    @code_list = (1..6).to_a.repeated_permutation(4).to_a.delete([1, 1, 2, 2])
   end
 
   def computer_guess
