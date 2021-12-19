@@ -12,7 +12,7 @@ class Game
       @code = PlayerCodemaker.new.code
       @computer = ComputerCodebreaker.new
     else
-      @code = ComputerCodemaker.new.code
+      @code = ComputerCodemaker.new
     end
   end
 
@@ -33,12 +33,32 @@ class Game
     end
   end
 
+  def computer_guess
+    guess = @computer.computer_guess
+    puts "The computer guessed #{guess.join("")}"
+    check = GuessCheck.new
+    correct_numbers = check.check_numbers(guess,@code)
+    correct_positions = check.check_position(guess,@code)
+
+    if correct_positions == 4
+      puts "You got the code right!"
+      true
+    elsif correct_numbers == 0
+      puts "You guessed #{correct_numbers} numbers correctly."
+    else
+      puts "You guessed #{correct_numbers} numbers correctly and " \
+      "#{correct_positions} #{check.position_plurality(correct_positions)} in the correct position."
+    end
+  end
+
   def turns
     i = 1
     max_turns = 12
     until i > max_turns
       puts "Turn #{i} of 12"
-      if @game_type == 2
+      if @game_type == 1
+        break if computer_guess == true
+      elsif @game_type == 2
         break if player_guess == true
       end
 
