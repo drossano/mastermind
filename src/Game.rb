@@ -33,15 +33,14 @@ class Game
     end
   end
 
-  def computer_guess
-    guess = @computer.computer_guess
+  def computer_guess(guess)
     puts "The computer guessed #{guess.join("")}"
     check = GuessCheck.new
     correct_numbers = check.check_numbers(guess,@code)
     correct_positions = check.check_position(guess,@code)
 
     if correct_positions == 4
-      puts "You got the code right!"
+      puts "The computer got the code right!"
       true
     elsif correct_numbers == 0
       puts "You guessed #{correct_numbers} numbers correctly."
@@ -57,7 +56,12 @@ class Game
     until i > max_turns
       puts "Turn #{i} of 12"
       if @game_type == 1
-        break if computer_guess == true
+        if i == 1
+          guess = [1, 1, 2, 2]
+        else
+          guess = @computer.computer_guess
+        end
+        break if computer_guess(guess) == true
       elsif @game_type == 2
         break if player_guess == true
       end
