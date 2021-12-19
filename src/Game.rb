@@ -16,13 +16,8 @@ class Game
     end
   end
 
-  def guess
-    if @game_type == 1
-      guess = @computer.computer_guess
-      p guess
-    else
+  def player_guess
       guess = PlayerCodebreaker.new.guess
-    end
     check = GuessCheck.new
     correct_numbers = check.check_numbers(guess,@code)
     correct_positions = check.check_position(guess,@code)
@@ -43,7 +38,9 @@ class Game
     max_turns = 12
     until i > max_turns
       puts "Turn #{i} of 12"
-      break if guess == true
+      if @game_type == 2
+        break if player_guess == true
+      end
 
       i += 1
     end
