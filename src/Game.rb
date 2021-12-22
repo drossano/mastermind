@@ -43,9 +43,9 @@ class Game
       puts "The computer got the code right!"
       true
     elsif correct_numbers == 0
-      puts "You guessed #{correct_numbers} numbers correctly."
+      puts "The computer guessed #{correct_numbers} numbers correctly."
     else
-      puts "You guessed #{correct_numbers} numbers correctly and " \
+      puts "The computer guessed #{correct_numbers} numbers correctly and " \
       "#{correct_positions} #{check.position_plurality(correct_positions)} in the correct position."
     end
   end
