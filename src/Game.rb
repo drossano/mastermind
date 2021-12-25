@@ -12,15 +12,15 @@ class Game
       @code = PlayerCodemaker.new.code
       @computer = ComputerCodebreaker.new
     else
-      @code = ComputerCodemaker.new
+      @code = ComputerCodemaker.new.code
     end
   end
 
   def player_guess
-      guess = PlayerCodebreaker.new.guess
+    guess = PlayerCodebreaker.new.guess
     check = GuessCheck.new
-    correct_numbers = check.check_numbers(guess,@code)
-    correct_positions = check.check_position(guess,@code)
+    correct_numbers = check.check_numbers(guess, @code)
+    correct_positions = check.check_position(guess, @code)
 
     if correct_positions == 4
       puts "You got the code right!"
@@ -36,8 +36,8 @@ class Game
   def computer_guess(guess)
     puts "The computer guessed #{guess.join("")}"
     check = GuessCheck.new
-    correct_numbers = check.check_numbers(guess,@code)
-    correct_positions = check.check_position(guess,@code)
+    correct_numbers = check.check_numbers(guess, @code)
+    correct_positions = check.check_position(guess, @code)
 
     if correct_positions == 4
       puts "The computer got the code right!"
