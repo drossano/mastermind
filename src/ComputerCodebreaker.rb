@@ -8,11 +8,16 @@ class ComputerCodebreaker
   end
 
   def computer_guess
+    guess = @code_list[0]
+    @code_list.delete(guess)
+    guess
   end
 
-  def code_solver(guess, correct_numbers, correct_positions = 0)
-    @code_list = @code_list.reject { |code| correct_numbers == @check.check_numbers(guess,code)}
-    @code_list = @code_list.reject { |code| correct_numbers == @check.check_position(guess,code)}
+  def code_solver(guess, correct_numbers, correct_positions)
+    @code_list = @code_list.reject { |code| correct_numbers != @check.check_numbers(guess,code)}
+    if correct_positions > 0
+      @code_list = @code_list.reject { |code| correct_positions != @check.check_position(guess,code)}
+    end
     p @code_list.count
   end
 end
