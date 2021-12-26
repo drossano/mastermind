@@ -44,9 +44,11 @@ class Game
       true
     elsif correct_numbers == 0
       puts "The computer guessed #{correct_numbers} numbers correctly."
+      @computer.code_solver(correct_numbers)
     else
       puts "The computer guessed #{correct_numbers} numbers correctly and " \
       "#{correct_positions} #{check.position_plurality(correct_positions)} in the correct position."
+      @computer.code_solver(guess, correct_numbers,correct_positions)
     end
   end
 
