@@ -15,10 +15,9 @@ class ComputerCodebreaker
 
   def code_solver(guess, correct_numbers, correct_positions)
     if correct_positions == "none" then correct_positions = 0 end
-    @code_list = @code_list.select { |code| correct_numbers == @check.check_numbers(guess,code)}
+    @code_list = @code_list.select { |code| correct_numbers == @check.check_numbers(guess, code) }
     if correct_positions > 0
-      @code_list = @code_list.select { |code| correct_positions == @check.check_position(guess,code)}
+      @code_list = @code_list.select { |code| correct_positions == @check.check_position(guess, code) }
     end
-    p @code_list.count
   end
 end

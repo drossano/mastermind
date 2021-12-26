@@ -3,7 +3,7 @@ require_relative "ComputerCodemaker"
 require_relative "ComputerCodebreaker"
 
 class GuessCheck
-  def check_numbers(guess,code)
+  def check_numbers(guess, code)
     correct_numbers = 0
     code_tally = code.tally
     guess_tally = guess.tally
@@ -17,7 +17,7 @@ class GuessCheck
     return correct_numbers
   end
 
-  def check_position(guess,code)
+  def check_position(guess, code)
     correct_positions = guess.zip(code).count { |guess_number, code_number| guess_number == code_number }
     if correct_positions == 0
       "none"

@@ -14,5 +14,4 @@ class GameType
       end
     end
   end
-  
 end
