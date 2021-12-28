@@ -16,24 +16,8 @@ class Game
     end
   end
 
-  def player_guess(guess)
-    check = GuessCheck.new
-    correct_numbers = check.check_numbers(guess, @code)
-    correct_positions = check.check_position(guess, @code)
-
-    if correct_positions == 4
-      puts "#{@game_type.player_name} got the code right!"
-      true
-    elsif correct_numbers == 0
-      puts "#{@game_type.player_name} guessed #{correct_numbers} numbers correctly."
-    else
-      puts "#{@game_type.player_name} guessed #{correct_numbers} numbers correctly and " \
-      "#{correct_positions} #{check.position_plurality(correct_positions)} in the correct position."
-    end
-  end
-
-  def computer_guess(guess)
-    puts "#{@game_type.player_name} guessed #{guess.join("")}"
+  def guess(guess)
+    puts "#{@game_type.player_name} guessed #{guess.join("")}" if @game_type.game_type == 1
     check = GuessCheck.new
     correct_numbers = check.check_numbers(guess, @code)
     correct_positions = check.check_position(guess, @code)
@@ -43,11 +27,11 @@ class Game
       true
     elsif correct_numbers == 0
       puts "#{@game_type.player_name} #{correct_numbers} numbers correctly."
-      @computer.code_solver(guess, correct_numbers, 0)
+      @computer.code_solver(guess, correct_numbers, 0) if @game_type.game_type == 1
     else
       puts "#{@game_type.player_name} #{correct_numbers} numbers correctly and " \
       "#{correct_positions} #{check.position_plurality(correct_positions)} in the correct position."
-      @computer.code_solver(guess, correct_numbers,correct_positions)
+      @computer.code_solver(guess, correct_numbers,correct_positions) if @game_type.game_type == 1
     end
   end
 
@@ -62,10 +46,10 @@ class Game
         else
           guess = @computer.computer_guess
         end
-        break if computer_guess(guess) == true
+        break if guess(guess) == true
       elsif @game_type.game_type == 2
         guess = @player.player_guess
-        break if player_guess(guess) == true
+        break if guess(guess) == true
       end
 
       i += 1
