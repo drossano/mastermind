@@ -1,6 +1,4 @@
 require_relative "PlayerCodemaker"
-require_relative "ComputerCodebreaker"
-require_relative "PlayerCodebreaker"
 require_relative "ComputerCodemaker"
 require_relative "GuessCheck"
 require_relative "GameType"
@@ -14,11 +12,11 @@ class Game
       @computer = Codebreaker.new
     else
       @code = ComputerCodemaker.new.code
+      @player = Codebreaker.new
     end
   end
 
-  def player_guess
-    guess = PlayerCodebreaker.new.guess
+  def player_guess(guess)
     check = GuessCheck.new
     correct_numbers = check.check_numbers(guess, @code)
     correct_positions = check.check_position(guess, @code)
@@ -66,7 +64,8 @@ class Game
         end
         break if computer_guess(guess) == true
       elsif @game_type.game_type == 2
-        break if player_guess == true
+        guess = @player.player_guess
+        break if player_guess(guess) == true
       end
 
       i += 1
