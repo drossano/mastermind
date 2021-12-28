@@ -20,15 +20,14 @@ class Game
     check = GuessCheck.new
     correct_numbers = check.check_numbers(guess, @code)
     correct_positions = check.check_position(guess, @code)
-
     if correct_positions == 4
       puts "#{@game_type.player_name} got the code right!"
       true
     elsif correct_numbers == 0
-      puts "#{@game_type.player_name} #{correct_numbers} numbers correctly."
+      puts "#{@game_type.player_name} #{correct_numbers} guessed numbers correctly."
       @computer.code_solver(guess, correct_numbers, 0) if @game_type.game_type == 1
     else
-      puts "#{@game_type.player_name} #{correct_numbers} numbers correctly and " \
+      puts "#{@game_type.player_name} #{correct_numbers} guessed numbers correctly and " \
       "#{correct_positions} #{check.position_plurality(correct_positions)} in the correct position."
       @computer.code_solver(guess, correct_numbers,correct_positions) if @game_type.game_type == 1
     end
