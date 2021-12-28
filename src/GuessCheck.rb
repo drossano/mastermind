@@ -1,4 +1,4 @@
-require_relative "ComputerCodemaker"
+require_relative "Codemaker"
 require_relative "Codebreaker"
 
 class GuessCheck

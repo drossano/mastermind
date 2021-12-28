@@ -13,4 +13,8 @@ class PlayerCodemaker
       end
     end
   end
+
+  def computer_code
+    @code = [rand(1..6),rand(1..6), rand(1..6), rand(1..6)]
+  end
 end
