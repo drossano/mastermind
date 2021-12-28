@@ -7,8 +7,8 @@ require_relative "GameType"
 
 class Game
   def initialize
-    @game_type = GameType.new.game_type
-    if @game_type == 1
+    @game_type = GameType.new
+    if @game_type.game_type == 1
       @code = PlayerCodemaker.new.code
       @computer = ComputerCodebreaker.new
     else
@@ -23,30 +23,30 @@ class Game
     correct_positions = check.check_position(guess, @code)
 
     if correct_positions == 4
-      puts "You got the code right!"
+      puts "#{@game_type.player_name} got the code right!"
       true
     elsif correct_numbers == 0
-      puts "You guessed #{correct_numbers} numbers correctly."
+      puts "#{@game_type.player_name} guessed #{correct_numbers} numbers correctly."
     else
-      puts "You guessed #{correct_numbers} numbers correctly and " \
+      puts "#{@game_type.player_name} guessed #{correct_numbers} numbers correctly and " \
       "#{correct_positions} #{check.position_plurality(correct_positions)} in the correct position."
     end
   end
 
   def computer_guess(guess)
-    puts "The computer guessed #{guess.join("")}"
+    puts "#{@game_type.player_name} guessed #{guess.join("")}"
     check = GuessCheck.new
     correct_numbers = check.check_numbers(guess, @code)
     correct_positions = check.check_position(guess, @code)
 
     if correct_positions == 4
-      puts "The computer got the code right!"
+      puts "#{@game_type.player_name} got the code right!"
       true
     elsif correct_numbers == 0
-      puts "The computer guessed #{correct_numbers} numbers correctly."
+      puts "#{@game_type.player_name} #{correct_numbers} numbers correctly."
       @computer.code_solver(guess, correct_numbers, 0)
     else
-      puts "The computer guessed #{correct_numbers} numbers correctly and " \
+      puts "#{@game_type.player_name} #{correct_numbers} numbers correctly and " \
       "#{correct_positions} #{check.position_plurality(correct_positions)} in the correct position."
       @computer.code_solver(guess, correct_numbers,correct_positions)
     end
@@ -57,14 +57,14 @@ class Game
     max_turns = 12
     until i > max_turns
       puts "Turn #{i} of 12"
-      if @game_type == 1
+      if @game_type.game_type == 1
         if i == 1
           guess = [1, 1, 2, 2]
         else
           guess = @computer.computer_guess
         end
         break if computer_guess(guess) == true
-      elsif @game_type == 2
+      elsif @game_type.game_type == 2
         break if player_guess == true
       end
 
@@ -72,7 +72,7 @@ class Game
 
     end
     if i > 12
-      puts "You reached the maximum amount of turns. The code is #{@code.join}"
+      puts "#{@game_type.player_name} reached the maximum amount of turns. The code is #{@code.join}"
     end
   end
 end

@@ -14,4 +14,12 @@ class GameType
       end
     end
   end
+
+  def player_name
+    if game_type == 1
+      "The computer"
+    elsif game_type == 2
+      "You"
+    end
+  end
 end
