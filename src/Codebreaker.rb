@@ -14,7 +14,7 @@ class Codebreaker
   end
 
   def player_guess
-    puts "Enter 4 digits ranging from 1 to 6 to create the code"
+    puts "Enter 4 digits ranging from 1 to 6 to guess the code"
     guess = gets.chomp.to_s.split("").map{ |digit| digit.to_i}
     loop do
       if guess.all? { |digit| digit.between?(1,6)} && guess.length == 4
