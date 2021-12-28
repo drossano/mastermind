@@ -2,6 +2,7 @@ require_relative "GuessCheck"
 require_relative "GameType"
 require_relative "Codebreaker"
 require_relative "Codemaker"
+require "io/console"
 
 class Game
   def initialize
@@ -45,17 +46,21 @@ class Game
           guess = @computer.computer_guess
         end
         break if guess(guess) == true
+        continue
       elsif @game_type.game_type == 2
         guess = @player.player_guess
         break if guess(guess) == true
       end
-
       i += 1
-
     end
     if i > 12
       puts "#{@game_type.player_name} reached the maximum amount of turns. The code is #{@code.join}"
     end
+  end
+
+  def continue
+    print "Press enter to continue..."
+    gets
   end
 end
 
