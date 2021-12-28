@@ -2,7 +2,6 @@ require_relative "GuessCheck"
 require_relative "GameType"
 require_relative "Codebreaker"
 require_relative "Codemaker"
-require "io/console"
 
 class Game
   def initialize
