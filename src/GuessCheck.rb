@@ -25,6 +25,14 @@ class GuessCheck
     end
   end
 
+  def number_plurality(correct_numbers)
+    if correct_numbers == 1
+      "number"
+    else
+      "numbers"
+    end
+  end
+
   def position_plurality(correct_positions)
     if correct_positions == 1
       "is"
