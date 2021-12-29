@@ -7,10 +7,14 @@ class Codebreaker
     @check = GuessCheck.new
   end
 
-  def computer_guess
-    guess = @code_list[0]
-    @code_list.delete(guess)
-    guess
+  def computer_guess(turn)
+    if turn == 1
+      [1, 1, 2, 2]
+    else
+      guess = @code_list[0]
+      @code_list.delete(guess)
+      guess
+    end
   end
 
   def player_guess

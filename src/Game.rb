@@ -21,12 +21,16 @@ class Game
     correct_numbers = @check.check_numbers(guess, @code)
     correct_positions = @check.check_position(guess, @code)
     if correct_positions == 4
-      puts "#{@game_type.player_name} got the code right!"
-      true
+      winner
     else
       puts number_feedback(correct_numbers) + position_feedback(correct_positions) + "."
       @computer.code_solver(guess, correct_numbers,correct_positions) if @game_type.game_type == 1
     end
+  end
+
+  def winner
+    puts "#{@game_type.player_name} got the code right!"
+      true
   end
 
   def number_feedback(correct_numbers)
@@ -43,12 +47,9 @@ class Game
     until i > max_turns
       puts "Turn #{i} of 12"
       if @game_type.game_type == 1
-        if i == 1
-          guess = [1, 1, 2, 2]
-        else
-          guess = @computer.computer_guess
-        end
+        guess = @computer.computer_guess(i)
         break if guess(guess) == true
+
         continue
       elsif @game_type.game_type == 2
         guess = @player.player_guess
@@ -56,7 +57,7 @@ class Game
       end
       i += 1
     end
-    if i > 12
+    if i > max_turns
       puts "#{@game_type.player_name} reached the maximum amount of turns. The code is #{@code.join}"
     end
   end
