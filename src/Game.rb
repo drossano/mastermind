@@ -13,24 +13,28 @@ class Game
       @code = Codemaker.new.computer_code
       @player = Codebreaker.new
     end
+    @check = GuessCheck.new
   end
 
   def guess(guess)
     puts "#{@game_type.player_name} guessed #{guess.join("")}" if @game_type.game_type == 1
-    check = GuessCheck.new
-    correct_numbers = check.check_numbers(guess, @code)
-    correct_positions = check.check_position(guess, @code)
+    correct_numbers = @check.check_numbers(guess, @code)
+    correct_positions = @check.check_position(guess, @code)
     if correct_positions == 4
       puts "#{@game_type.player_name} got the code right!"
       true
-    elsif correct_numbers == 0
-      puts "#{@game_type.player_name} #{correct_numbers} guessed numbers correctly."
-      @computer.code_solver(guess, correct_numbers, 0) if @game_type.game_type == 1
     else
-      puts "#{@game_type.player_name} #{correct_numbers} guessed numbers correctly and " \
-      "#{correct_positions} #{check.position_plurality(correct_positions)} in the correct position."
+      puts number_feedback(correct_numbers) + position_feedback(correct_positions) + "."
       @computer.code_solver(guess, correct_numbers,correct_positions) if @game_type.game_type == 1
     end
+  end
+
+  def number_feedback(correct_numbers)
+    "#{@game_type.player_name} #{correct_numbers} guessed numbers correctly"
+  end
+
+  def position_feedback(correct_positions)
+    " and #{correct_positions} #{@check.position_plurality(correct_positions)} in the correct position"
   end
 
   def turns
