@@ -1,6 +1,6 @@
-require_relative "GuessCheck"
-require_relative "Codebreaker"
-require_relative "Codemaker"
+require_relative "guess-check"
+require_relative "codebreaker"
+require_relative "codemaker"
 
 class Game
   def initialize

@@ -1,4 +1,4 @@
-require_relative "GuessCheck"
+require_relative "guess-check"
 
 class Codebreaker
   def initialize
