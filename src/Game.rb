@@ -5,6 +5,8 @@ require_relative "Codemaker"
 class Game
   def initialize
     @game_type = get_game_type
+    @code = assign_codemaker(@game_type)
+    @codebreaker = Codebreaker.new
     @check = GuessCheck.new
   end
 
@@ -22,6 +24,14 @@ class Game
     end
   end
 
+  def assign_codemaker(game_type)
+    if game_type == 1
+      @code = Codemaker.new.player_code
+    else
+      @code = Codemaker.new.computer_code
+    end
+  end
+
   def guess(guess)
     puts "#{player_name(@game_type)} guessed #{guess.join("")}" if @game_type == 1
     correct_numbers = @check.check_numbers(guess, @code)
@@ -30,7 +40,7 @@ class Game
       winner
     else
       puts number_feedback(correct_numbers) + position_feedback(correct_positions) + "."
-      @computer.code_solver(guess, correct_numbers,correct_positions) if @game_type == 1
+      @codebreaker.code_solver(guess, correct_numbers,correct_positions) if @game_type == 1
     end
   end
 
@@ -56,34 +66,23 @@ class Game
   end
 
   def turns
-    assign_roles(@game_type)
     i = 1
     max_turns = 12
     until i > max_turns
       puts "Turn #{i} of 12"
       if @game_type == 1
-        guess = @computer.computer_guess(i)
+        guess = @codebreaker.computer_guess(i)
         break if guess(guess) == true
 
         continue
       elsif @game_type == 2
-        guess = @player.player_guess
+        guess = @codebreaker.player_guess
         break if guess(guess) == true
       end
       i += 1
     end
     if i > max_turns
       puts "#{player_name(@game_type)} reached the maximum amount of turns. The code is #{@code.join}"
-    end
-  end
-
-  def assign_roles(game_type)
-    if game_type == 1
-      @code = Codemaker.new.player_code
-      @computer = Codebreaker.new
-    else
-      @code = Codemaker.new.computer_code
-      @player = Codebreaker.new
     end
   end
 
