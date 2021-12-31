@@ -91,6 +91,3 @@ class Game
     gets
   end
 end
-
-game = Game.new
-game.turns
