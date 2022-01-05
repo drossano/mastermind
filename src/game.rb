@@ -58,7 +58,7 @@ class Game
   end
 
   def number_feedback(correct_numbers)
-    "#{player_name(@game_type)} #{correct_numbers} guessed #{@check.number_plurality(correct_numbers)} correctly"
+    "#{player_name(@game_type)} guessed #{correct_numbers} #{@check.number_plurality(correct_numbers)} correctly"
   end
 
   def position_feedback(correct_positions)
